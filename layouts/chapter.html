@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><!-- TITLE --> - Rust for Kinetic</title>
+    <link rel="stylesheet" href="/assets/styles/base.css">
+    <link rel="stylesheet" href="/assets/styles/cards.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        } else if (savedTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+</head>
+<body>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="sidebar-header" style="display: flex; justify-content: space-between; align-items: center;">
+                <h2>Rust for Kinetic</h2>
+                <button id="theme-toggle" aria-label="Toggle theme" style="background: none; border: none; color: var(--text-color); cursor: pointer; font-size: 1.2rem;">
+                    🌓
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-group">
+                    <h4 style="margin: 1rem 0 0.5rem 0; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Foundations</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li><a href="/01-variables" style="display: block; padding: 0.5rem 0.5rem; text-decoration: none; color: var(--text-color); border-radius: 4px;">01 - Variables</a></li>
+                        <li><a href="/02-data-types" style="display: block; padding: 0.5rem 0.5rem; text-decoration: none; color: var(--text-color); border-radius: 4px;">02 - Data Types</a></li>
+                        <li><a href="/03-mutability" style="display: block; padding: 0.5rem 0.5rem; text-decoration: none; color: var(--text-color); border-radius: 4px;">03 - Mutability</a></li>
+                        <li><a href="/04-functions" style="display: block; padding: 0.5rem 0.5rem; text-decoration: none; color: var(--text-color); border-radius: 4px;">04 - Functions</a></li>
+                        <li><a href="/05-scope" style="display: block; padding: 0.5rem 0.5rem; text-decoration: none; color: var(--text-color); border-radius: 4px;">05 - Scope</a></li>
+                    </ul>
+                </div>
+                <div class="nav-group">
+                    <h4 style="margin: 1.5rem 0 0.5rem 0; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Memory & Ownership</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li><a href="/06-stack-and-heap" style="display: block; padding: 0.5rem 0.5rem; text-decoration: none; color: var(--text-color); border-radius: 4px;">06 - Stack & Heap</a></li>
+                        <li><a href="/07-ownership" style="display: block; padding: 0.5rem 0.5rem; text-decoration: none; color: var(--text-color); border-radius: 4px;">07 - Ownership</a></li>
+                        <li><a href="/08-borrowing" style="display: block; padding: 0.5rem 0.5rem; text-decoration: none; color: var(--text-color); border-radius: 4px;">08 - Borrowing</a></li>
+                        <li><a href="/09-mutable-borrowing" style="display: block; padding: 0.5rem 0.5rem; text-decoration: none; color: var(--text-color); border-radius: 4px;">09 - Mutable Borrowing</a></li>
+                        <li><a href="/10-lifetimes" style="display: block; padding: 0.5rem 0.5rem; text-decoration: none; color: var(--text-color); border-radius: 4px;">10 - Lifetimes</a></li>
+                    </ul>
+                </div>
+                <div class="nav-group">
+                    <h4 style="margin: 1.5rem 0 0.5rem 0; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Data Structures</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li><a href="/11-structs" style="display: block; padding: 0.5rem 0.5rem; text-decoration: none; color: var(--text-color); border-radius: 4px;">11 - Structs</a></li>
+                        <li><a href="/12-enums-and-match" style="display: block; padding: 0.5rem 0.5rem; text-decoration: none; color: var(--text-color); border-radius: 4px;">12 - Enums & Match</a></li>
+                        <li><a href="/13-option" style="display: block; padding: 0.5rem 0.5rem; text-decoration: none; color: var(--text-color); border-radius: 4px;">13 - Option</a></li>
+                        <li><a href="/14-result" style="display: block; padding: 0.5rem 0.5rem; text-decoration: none; color: var(--text-color); border-radius: 4px;">14 - Result</a></li>
+                        <li><a href="/15-collections" style="display: block; padding: 0.5rem 0.5rem; text-decoration: none; color: var(--text-color); border-radius: 4px;">15 - Collections</a></li>
+                    </ul>
+                </div>
+                <div class="nav-group">
+                    <h4 style="margin: 1.5rem 0 0.5rem 0; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Architecture</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li><a href="/16-impl-blocks" style="display: block; padding: 0.5rem 0.5rem; text-decoration: none; color: var(--text-color); border-radius: 4px;">16 - Impl Blocks</a></li>
+                        <li><a href="/17-traits" style="display: block; padding: 0.5rem 0.5rem; text-decoration: none; color: var(--text-color); border-radius: 4px;">17 - Traits</a></li>
+                        <li><a href="/18-modules" style="display: block; padding: 0.5rem 0.5rem; text-decoration: none; color: var(--text-color); border-radius: 4px;">18 - Modules</a></li>
+                    </ul>
+                </div>
+                <div class="nav-group">
+                    <h4 style="margin: 1.5rem 0 0.5rem 0; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Concurrency</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li><a href="/19-generics" style="display: block; padding: 0.5rem 0.5rem; text-decoration: none; color: var(--text-color); border-radius: 4px;">19 - Generics</a></li>
+                        <li><a href="/20-async" style="display: block; padding: 0.5rem 0.5rem; text-decoration: none; color: var(--text-color); border-radius: 4px;">20 - Async</a></li>
+                        <li><a href="/21-await" style="display: block; padding: 0.5rem 0.5rem; text-decoration: none; color: var(--text-color); border-radius: 4px;">21 - Await</a></li>
+                        <li><a href="/22-tokio" style="display: block; padding: 0.5rem 0.5rem; text-decoration: none; color: var(--text-color); border-radius: 4px;">22 - Tokio</a></li>
+                    </ul>
+                </div>
+                <div class="nav-group">
+                    <h4 style="margin: 1.5rem 0 0.5rem 0; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Finale</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li><a href="/23-reading-real-code" style="display: block; padding: 0.5rem 0.5rem; text-decoration: none; color: var(--text-color); border-radius: 4px;">23 - Reading Real Code</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="content-container">
+                <!-- CONTENT -->
+            </div>
+        </main>
+        
+        <aside class="toc-sidebar">
+            <div class="toc-header">
+                <h3>On this page</h3>
+            </div>
+            <nav class="toc-nav">
+                <ul>
+                    <li><a href="#">Overview</a></li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+
+    <!-- Initialize Mermaid -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        
+        // Update mermaid theme based on current theme
+        const getMermaidTheme = () => document.documentElement.getAttribute('data-theme') === 'light' ? 'default' : 'dark';
+        
+        mermaid.initialize({ startOnLoad: true, theme: getMermaidTheme() });
+
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const isLight = currentTheme === 'light' || (!currentTheme && window.matchMedia('(prefers-color-scheme: light)').matches);
+            const newTheme = isLight ? 'dark' : 'light';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            // Re-render mermaid graphs on theme change
+            location.reload();
+        });
+
+        // Set active link in sidebar
+        const currentPath = window.location.pathname.replace('.html', '');
+        document.querySelectorAll('.sidebar-nav a').forEach(link => {
+            const href = link.getAttribute('href');
+            if (href === currentPath || (currentPath === '/' && href === '/01-variables')) {
+                link.style.backgroundColor = 'var(--bg-secondary)';
+                link.style.fontWeight = '600';
+                link.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
