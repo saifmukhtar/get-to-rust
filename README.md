@@ -1,5 +1,7 @@
 # Get to Rust: The Book Bible
 
+🌍 **Read online:** [https://rust.saifmukhtar.dev](https://rust.saifmukhtar.dev)
+
 Welcome to **Get to Rust**, a completely reimagined, mental-model-first approach to learning the Rust programming language. 
 
 Traditional programming books teach you syntax first and hope you eventually understand the "why". This handbook flips the script entirely. Every chapter strictly follows a rigorous pedagogical pipeline:
