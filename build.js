@@ -94,7 +94,7 @@ async function build() {
     // Replace Vite's CSS injection with actual link tag since Vite isn't building this
     finalHtml = finalHtml.replace(
       '</head>', 
-      `<link rel="stylesheet" href="/assets/styles/base.css">\n<link rel="stylesheet" href="/assets/styles/cards.css">\n</head>`
+      `<link rel="stylesheet" href="./assets/styles/base.css">\n<link rel="stylesheet" href="./assets/styles/cards.css">\n</head>`
     );
     
     fs.writeFileSync(path.resolve(distDir, `${pageName}.html`), finalHtml);
