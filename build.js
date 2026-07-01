@@ -104,6 +104,37 @@ async function build() {
     }
   }
 
+  
+
+  // Generate single-page Book HTML
+  let fullMarkdown = '# Get to Rust: The Book Bible\n\n';
+  for (const file of files) {
+    const mdContent = fs.readFileSync(path.resolve(chaptersDir, file), 'utf-8');
+    fullMarkdown += `<div class="page-break"></div>\n\n` + mdContent + '\n\n';
+  }
+
+  const allHtmlContent = md.render(fullMarkdown);
+  let bookLayout = layout.replace('<!-- CONTENT -->', allHtmlContent);
+  bookLayout = bookLayout.replace('<!-- TITLE -->', 'Full Book');
+  bookLayout = bookLayout.replace(/href="\/assets/g, 'href="./assets');
+  bookLayout = bookLayout.replace(
+      '</head>', 
+      `<link rel="stylesheet" href="./assets/styles/base.css">\n<link rel="stylesheet" href="./assets/styles/cards.css">\n<style>
+      @media print {
+        .sidebar, .top-nav, #theme-toggle { display: none !important; }
+        .app-layout { display: block !important; }
+        .main-content { margin: 0 !important; width: 100% !important; max-width: none !important; padding: 0 !important; }
+        .page-break { page-break-before: always; }
+        body { background: white !important; color: black !important; margin: 0 !important; padding: 0 !important; }
+        .card { border: 1px solid #ccc !important; break-inside: avoid; }
+        a { text-decoration: none !important; color: black !important; }
+        code, pre { background: #f8f8f8 !important; border: 1px solid #eee !important; color: black !important; break-inside: avoid; }
+        .shiki { background-color: #f8f8f8 !important; }
+      }
+      </style>\n</head>`
+  );
+  fs.writeFileSync(path.resolve(distDir, 'book.html'), bookLayout);
+
   console.log('Build complete!');
 }
 
