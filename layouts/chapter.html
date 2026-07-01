@@ -22,12 +22,21 @@
 </head>
 <body>
     <div class="app-layout">
+
+    <header class="top-nav">
+        <div class="nav-left" style="display: flex; gap: 1rem; align-items: center;">
+            <button id="menu-toggle" aria-label="Toggle menu">☰</button>
+            <span class="mobile-title">Rust for Kinetic</span>
+        </div>
+        <div class="nav-right">
+            <!-- Theme toggle moved to right nav on mobile -->
+        </div>
+    </header>
+
         <aside class="sidebar">
             <div class="sidebar-header" style="display: flex; justify-content: space-between; align-items: center;">
                 <h2>Rust for Kinetic</h2>
-                <button id="theme-toggle" aria-label="Toggle theme" style="background: none; border: none; color: var(--text-color); cursor: pointer; font-size: 1.2rem;">
-                    🌓
-                </button>
+                
             </div>
             <nav class="sidebar-nav">
                 <div class="nav-group">
@@ -85,6 +94,7 @@
                 </div>
             </nav>
         </aside>
+        <button id="theme-toggle" style="position: fixed; top: 1rem; right: 1.5rem; background: var(--bg-color-secondary); border: 1px solid var(--border-color); color: var(--text-color); font-size: 1.5rem; cursor: pointer; border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; z-index: 1000; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">🌓</button>
 
         <main class="main-content">
             <div class="content-container">
@@ -92,16 +102,7 @@
             </div>
         </main>
         
-        <aside class="toc-sidebar">
-            <div class="toc-header">
-                <h3>On this page</h3>
-            </div>
-            <nav class="toc-nav">
-                <ul>
-                    <li><a href="#">Overview</a></li>
-                </ul>
-            </nav>
-        </aside>
+        
     </div>
 
     <!-- Initialize Mermaid -->
@@ -124,6 +125,24 @@
             
             // Re-render mermaid graphs on theme change
             location.reload();
+        });
+
+        
+        const menuToggle = document.getElementById('menu-toggle');
+        const sidebar = document.querySelector('.sidebar');
+        if(menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('open');
+            });
+        }
+        
+        // Close sidebar when clicking a link (on mobile)
+        document.querySelectorAll('.sidebar-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.remove('open');
+                }
+            });
         });
 
         // Set active link in sidebar
